@@ -1,0 +1,14 @@
+# فایل‌های مربوط به PostgreSQL
+*.pgdump
+*.pgbackup
+/db_backups/
+/postgres_data/
+
+# فایل‌های محیطی (Environment Variables)
+venv/
+.env
+__pycache__/
+*.pyc
+
+# فایل‌های لاگ
+*.log
