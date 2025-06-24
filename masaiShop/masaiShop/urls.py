@@ -22,7 +22,7 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('', views.home),
-    path('product/', include('product.urls')),
+    path('', include('product.urls')),
     path('admin/', admin.site.urls),
 ]
 
