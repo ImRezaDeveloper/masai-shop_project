@@ -109,7 +109,7 @@
                             <ul class="main_meno-drobdown">
                                 {% for category in categories %}
                                     <li class="child_mno-drobdown">
-                                    <a href="#" class="run">{{category.title}}</a>
+                                    <a href="{% url 'product-detail' category.slug %}" class="run">{{category.title}}</a>
                                     <div class="mega_meno">
                                         <ul class="list_drobdown--item">
                                             <li class="list_drobdown--items border_left--red">

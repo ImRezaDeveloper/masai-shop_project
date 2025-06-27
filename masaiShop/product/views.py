@@ -5,7 +5,7 @@ from django.views.generic import DetailView, ListView
 # Create your views here.
 
 # products
-class ProductList(ListView):
+class ProductList(De):
     template_name = 'product/products.html'
     model = ProductModel
 

@@ -1,32 +1,12 @@
 ﻿{% extends 'base.html' %}
 {% load static %}
 
-<!DOCTYPE html>
+{% block page_title %}
+    <title>لیست محصولات</title>
+{% endblock page_title %}
 
-
-{% block header %}
-        محصولات
-{% endblock header %}
-
-<html lang="fa">
-
-
-
-
-<body class="index-page sidebar-collapse">
-    <div class="top-section fullscreen-container">
-        <img src="/static/img/banner_img/bg_top.jpg" class="h-100">
-    </div>
-    <!--start mobile header -->
-    {% include "includes/header_mobile.html" %}
-    <!-- end mobile header -->
-    <div class="wrapper default ">
-
-        <!--start pc header -->
-        {% include 'includes/header_pc.html' %}
-        <!-- end pc header -->
-        <!-- main -->
-        <main class="search-page default space-top-30">
+{% block content %}
+    <main class="search-page default space-top-30">
             <div class="container">
                 <div class="row">
                     <div class="col-12 hidden-xs">
@@ -1794,18 +1774,6 @@
                 </div>
             </div>
         </main>
-        <!-- main -->
-
-        {% include "includes/footer.html" %}
-    </div>
-    <!--    JS Files   -->
-    {% include 'includes/footer_references.html' %}
-    <!-- custom Js -->
-   
-    <script src="/static/js/main.js" type="text/javascript"></script>
-   
-</body>
+{% endblock content %}
 
 
-
-</html>
