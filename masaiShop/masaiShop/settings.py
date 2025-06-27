@@ -40,7 +40,8 @@ INSTALLED_APPS = [
     
     # my-app
     'product',
-    'account'
+    'account',
+    'home'
 ]
 
 MIDDLEWARE = [
@@ -67,7 +68,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'prodcut.context_processors.show_categories'
+                # 'prodcut.context_processors.show_categories'
             ],
         },
     },
