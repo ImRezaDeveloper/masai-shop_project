@@ -1,9 +1,14 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="fa">
 
+{% block page_title %}
+    <title>مَسای شاپ </title>
+{% endblock page_title %}
 
+
+<!-- Mirrored from garzak.ir/garzak_them/Masai/M_01/template_01/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 16 May 2023 07:57:02 GMT -->
 <head>
-    {% include 'includes/header_refrences.html' %}
+    {% include "includes/header_refrences.html" %}
 </head>
 
 <body class="index-page sidebar-collapse">
@@ -11,15 +16,17 @@
         <img src="/static/img/banner_img/bg_top.jpg" class="h-100">
     </div>
     <!--start mobile header -->
-    {% include "includes/header_mobile.html" %}
+    {% include 'includes/header_mobile.html' %}
     <!-- end mobile header -->
     <div class="wrapper default">
 
         <!--start pc header -->
-        {% include "includes/header_pc.html" %}
+        {% include 'includes/header_pc.html' %}
         <!-- end pc header -->
-
-        <main class="main default space-top-10">
+        
+        
+        {% block content %}
+            <main class="main default space-top-10">
         
             <div class="container-fluid">
                 <div class="slider_main owl-carousel owl-theme">
@@ -1331,16 +1338,16 @@
                 </div>
             </div>
         </main>
+        {% endblock content %}
         
 
-    
+    {% include "includes/footer.html" %}
     </div>
-
-    {% comment %} footer {% endcomment %}
-    {% include 'includes/footer.html' %}
     <!--    JS Files   -->
     {% include 'includes/footer_references.html' %}
 </body>
+
+
 
 <!-- Mirrored from garzak.ir/garzak_them/Masai/M_01/template_01/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 16 May 2023 07:57:52 GMT -->
 </html>
