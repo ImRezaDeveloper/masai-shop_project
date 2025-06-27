@@ -1,13 +1,10 @@
 from django.shortcuts import render
-from .models import ProductModel
+from .models import ProductModel, Category
 from django.shortcuts import get_object_or_404
 from django.views.generic import DetailView, ListView
 # Create your views here.
 
-# def productView(request, slug):
-#     product = get_object_or_404(ProductModel, slug=slug)
-#     return render(request, 'product/single-product.html', context={'product': product})
-
+# products
 class ProductList(ListView):
     template_name = 'product/products.html'
     model = ProductModel
@@ -21,3 +18,5 @@ class ProductDetail(DetailView):
         context = super().get_context_data(**kwargs)
         context["product"] = get_object_or_404(ProductModel)
         return context
+    
+# categories 
