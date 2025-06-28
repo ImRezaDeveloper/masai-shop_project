@@ -25,7 +25,3 @@ class ProductDetail(DetailView):
         context = super().get_context_data(**kwargs)
         context["product"] = get_object_or_404(ProductModel)
         return context
-    
-# categories 
-class CategoryList(ListView):
-    pass

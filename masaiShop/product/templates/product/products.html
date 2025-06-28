@@ -4,7 +4,6 @@
 {% block page_title %}
     <title>لیست محصولات</title>
 {% endblock page_title %}
-
 {% block content %}
     <main class="search-page default space-top-30">
             <div class="container">
@@ -17,57 +16,18 @@
                             <div class="row">
                                 <div class="col-12">
                                     <div class="row">
-                                        <div class="col-6 col-md-2 contact-bigicon">
+                                        {% for category in categories %}
+                                            <div class="col-6 col-md-2 contact-bigicon">
 
                                             <a href="#" target="_blank">
-                                                <img class="img-responsive imgpad" src="/static/img/Masai/bigicon/img-1.png" alt="" />
-                                                <b class="title-3 light-black">کالای دیجیتال</b>
+                                                <img class="img-responsive imgpad" src="{{category.image.url}}" alt="" />
+                                                <b class="title-3 light-black">{{category.title}}</b>
                                             </a>
 
                                         </div>
-                                        <div class="col-6 col-md-2 contact-bigicon">
-
-                                            <a href="#" target="_top">
-                                                <img class="img-responsive imgpad" src="/static/img/Masai/bigicon/img-2.png" alt="" />
-                                                <b class="title-3 light-black">مودم</b>
-                                            </a>
-
-                                        </div>
-                                        <div class="col-6 col-md-2 contact-bigicon">
-
-                                            <a href="#" target="_blank">
-                                                <img class="img-responsive imgpad" src="/static/img/Masai/bigicon/img-3.png" alt="" />
-                                                <b class="title-3 light-black">تبلت</b>
-                                            </a>
-
-                                        </div>
-                                        <div class="col-6 col-md-2 contact-bigicon">
-
-                                            <a href="#" target="_top">
-                                                <img class="img-responsive imgpad" src="/static/img/Masai/bigicon/img-4.png" alt="" />
-                                                <b class="title-3 light-black">ماوس</b>
-                                            </a>
-
-                                        </div>
-                                        <div class="col-6 col-md-2 contact-bigicon">
-
-                                            <a href="#" target="_top">
-                                                <img class="img-responsive imgpad" src="/static/img/Masai/bigicon/img-5.png" alt="" />
-                                                <b class="title-3 light-black">هندزفری</b>
-                                            </a>
-
-                                        </div>
-                                        <div class="col-6 col-md-2 contact-bigicon">
-
-                                            <a href="#" target="_top">
-                                                <img class="img-responsive imgpad" src="/static/img/Masai/bigicon/img-6.png" alt="" />
-                                                <b class="title-3 light-black">ساعت هوشمند</b>
-                                            </a>
-
-                                        </div>
+                                        {% endfor %}
                                     </div>
-                                </div>
-                                 
+                                </div>                    
                             </div>
                         </div>
                     </div>

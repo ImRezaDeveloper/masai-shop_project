@@ -5,8 +5,6 @@
     <title>مَسای شاپ </title>
 {% endblock page_title %}
 
-
-<!-- Mirrored from garzak.ir/garzak_them/Masai/M_01/template_01/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 16 May 2023 07:57:02 GMT -->
 <head>
     {% include "includes/header_refrences.html" %}
 </head>
@@ -1177,33 +1175,7 @@
                 <div class="row">
 
                     <div class="col-12">
-                        <div class="brand-slider card border_all bglight">
-                            <header class="card-header">
-                                <h3 class="card-title"><span>دسته بندی های مَسای</span></h3>
-                            </header>
-                             <div class="row">
-                                 <div class="col-12">
-                                     <div class="row">
-                                         
-                                         {% for category in categories %}
-                                            <div class="col-6 col-md-2 contact-bigicon">
-
-                                             <a href="#" target="_blank">
-                                                 <img class="img-responsive imgpad" src="{{category.image.url}}" alt="" />
-                                                 <b class="title-3 light-black">{{category.title}}</b>
-                                             </a>
-
-                                         </div>
-                                         {% endfor %}
-                                            
-                                     </div>
-                                 </div>
-                                 <div class="col-12">
-                                     <div class="row">
-                                     </div>
-                                 </div>
-                             </div>
-                        </div>
+                        {% include 'shared/category.html' %}
                     </div>
                 </div>
                
@@ -1260,7 +1232,4 @@
     {% include 'includes/footer_references.html' %}
 </body>
 
-
-
-<!-- Mirrored from garzak.ir/garzak_them/Masai/M_01/template_01/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 16 May 2023 07:57:52 GMT -->
 </html>
