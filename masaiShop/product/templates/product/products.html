@@ -287,7 +287,7 @@
                                     
                                         <div class="row listing-items">
                                             
-                                            {% for product in products %}
+                                            {% comment %} {% for product in products %} {% endcomment %}
                                                 <div class="col-xl-4 col-lg-4 col-md-6 col-12 list_search_p ">
                                                 <div class="product-box">
                                                     <div class="product-seller-details product-seller-details-item-grid">
@@ -301,7 +301,7 @@
                                                             <i class="fa fa fa-cart-arrow-down search_icon_cart" aria-hidden="true"></i>
                                                         </span>
                                                     </div>
-                                                    <a class="product-box-img" href="single-product.html">
+                                                    <a class="product-box-img" href="{% url 'product-detail' product.slug%}">
                                                         <img src="{{product.image.url}}" alt="">
                                                         <ul>
                                                             <li class="color_pro" style="background-color: #2fabd3;top: 7px;"></li>
@@ -326,12 +326,10 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                            {% endfor %}
-                                                
+                                            </div>                                                
                                         </div>                      
                                 </div>
-                                <div class="tab-pane" id="most-visited" role="tabpanel" aria-expanded="false">
+                                {% comment %} <div class="tab-pane" id="most-visited" role="tabpanel" aria-expanded="false">
                                     <div class="row listing-items">
                                         <div class="col-xl-4 col-lg-4 col-md-6 col-12 list_search_p ">
                                             <div class="product-box">
@@ -1766,7 +1764,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </div> {% endcomment %}
                             </div>
                     
                         </div>
@@ -1775,5 +1773,3 @@
             </div>
         </main>
 {% endblock content %}
-
-
