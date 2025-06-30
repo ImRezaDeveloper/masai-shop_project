@@ -19,7 +19,7 @@
                                         {% for category in categories %}
                                             <div class="col-6 col-md-2 contact-bigicon">
 
-                                            <a href="#" target="_blank">
+                                            <a href="{% url 'product-list-by-category' category.slug %}">
                                                 <img class="img-responsive imgpad" src="{{category.image.url}}" alt="" />
                                                 <b class="title-3 light-black">{{category.title}}</b>
                                             </a>
