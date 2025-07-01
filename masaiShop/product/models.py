@@ -25,6 +25,7 @@ class ProductModel(models.Model):
     discount = models.IntegerField(default=0)
     bluetooth = models.BooleanField(default=True)
     category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='product_category', null=True, blank=True)
+    is_offer = models.BooleanField(default=True)
 
     def __str__(self):
         return self.title
