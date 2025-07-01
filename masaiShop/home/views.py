@@ -6,5 +6,5 @@ from product.models import Category, ProductModel
 class HomeView(View):
     def get(self, request):
         categories = Category.objects.all()
-        products = ProductModel.objects.all()
+        products = ProductModel.objects.filter(is_offer=True)
         return render(request, 'base.html', {'categories': categories, 'products': products})
