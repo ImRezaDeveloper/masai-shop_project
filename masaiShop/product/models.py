@@ -10,6 +10,7 @@ class ProductModel(models.Model):
     slug = models.SlugField(null=True, blank=True, unique=True, max_length=100)  # اضافه کردن unique=True
     discount = models.IntegerField(default=0)
     bluetooth = models.BooleanField(default=True)
+    is_offer = models.BooleanField(default=True)
 
     def __str__(self):
         return self.title
