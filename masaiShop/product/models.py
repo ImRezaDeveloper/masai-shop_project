@@ -18,7 +18,7 @@ class ProductBrand(models.Model):
     slug = models.SlugField(max_length=100, unique=True, blank=True)
     
     def __str__(self):
-        return self.brand
+        return self.name
     
     def save(self, *args, **kwargs):
         if not self.slug:

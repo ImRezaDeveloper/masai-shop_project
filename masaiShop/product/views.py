@@ -11,13 +11,19 @@ from django.views.generic import DetailView, ListView
 class ProductList(ListView):
     template_name = 'product/products.html'
     model = ProductModel
-    context_object_name = 'products'  
-        
+    context_object_name = 'products'      
+    
     def get_queryset(self):
         queryset = super().get_queryset()
         if 'category_slug' in self.kwargs:
             queryset = queryset.filter(category__slug=self.kwargs['category_slug'])
-        return queryset 
+
+        brandSlug = self.request.GET.get('brand')
+        if brandSlug:
+            queryset = queryset.filter(brand__slug=brandSlug)
+            
+        return queryset
+    
 class ProductDetail(DetailView):
     template_name = 'product/single-product.html'
     model = ProductModel

@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.views.generic import View
-from product.models import Category, ProductModel
+from product.models import Category, ProductModel, ProductBrand
 # Create your views here.
 
 class HomeView(View):
@@ -8,4 +8,8 @@ class HomeView(View):
         categories = Category.objects.all()
         products = ProductModel.objects.all()
         products_isOffer = ProductModel.objects.filter(is_offer=True)
-        return render(request, 'base.html', {'categories': categories, 'products': products, 'products_isOffer': products_isOffer})
+        return render(request, 'base.html', 
+                      {'categories': categories,
+                       'products': products,
+                       'products_isOffer': products_isOffer,
+                       })
