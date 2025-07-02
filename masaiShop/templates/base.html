@@ -200,17 +200,17 @@
                                         </div>
                                     </header>
                                     <div class="product-carousel owl-carousel owl-theme">
-                                        {% for product in products %}
+                                        {% for offer in products_isOffer %}
                                             <div class="item">
                                             <a href="single-product.html">
-                                                <img src="{{product.image.url}}"  class="img-fluid" alt="">
+                                                <img src="{{offer.image.url}}"  class="img-fluid" alt="">
                                             </a>
                                             <h2 class="product_title">
-                                                <a href="single-product.html">{{product.title}}</a>
+                                                <a href="single-product.html">{{offer.title}}</a>
                                             </h2>
                                             <div class="price">
-                                                <del><span>{{product.price}}<span>تومان</span></span></del>
-                                                <span class="discount_badge">{{product.discount}}%</span>
+                                                <del><span>{{offer.price}}<span>تومان</span></span></del>
+                                                <span class="discount_badge">{{offer.discount}}%</span>
                                                 {% comment %} <ins><span>665,000<span>تومان</span></span></ins> {% endcomment %}
                                             </div>
                                         </div>
