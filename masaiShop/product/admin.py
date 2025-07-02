@@ -6,8 +6,16 @@ from . import models
 class ProdcutAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug': ('title',)}
 
+<<<<<<< HEAD
 @admin.register(models.Category)
 class CategoryAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug': ('title',)}
     
 admin.site.register(models.AdditionalFeature)
+=======
+@admin.register(models.ProductBrand)
+class ProdcutBrandAdmin(admin.ModelAdmin):
+    prepopulated_fields = {'slug': ('name',)}
+
+admin.site.register(models.AdditionalFeature)
+>>>>>>> product
