@@ -64,6 +64,7 @@ class Comment(models.Model):
     product = models.ForeignKey(ProductModel, on_delete=models.CASCADE, related_name='comments')
     created_at = models.DateTimeField(auto_now=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='comment_user')
+    image = models.ImageField(upload_to='users', null=True, blank=True)
     
     def __str__(self):
         return self.description[:30]

@@ -26,7 +26,7 @@ class ProductList(ListView):
     
 class ProductDetail(DetailView):
     template_name = 'product/single-product.html'
-    model = ProductModel, Comment
+    model = ProductModel
     context_object_name = 'product'
     
     def get_queryset(self):
@@ -35,7 +35,9 @@ class ProductDetail(DetailView):
             queryset = queryset.filter(slug=self.kwargs['slug'])
         return queryset
     
-    # def get_context_data(self, **kwargs):
-    #     context = super().get_context_data(**kwargs)
-    #     context["product"] = get_object_or_404(ProductModel)
-    #     return context
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["product"] = get_object_or_404(ProductModel)
+        context["comments"] = Comment.objects.all()
+
+        return context
