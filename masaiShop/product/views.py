@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import ProductModel, Category
+from .models import ProductModel, Category, Comment
 from django.shortcuts import get_object_or_404
 from django.views.generic import DetailView, ListView
 # Create your views here.
@@ -12,7 +12,7 @@ class ProductList(ListView):
     template_name = 'product/products.html'
     model = ProductModel
     context_object_name = 'products'      
-    
+        
     def get_queryset(self):
         queryset = super().get_queryset()
         if 'category_slug' in self.kwargs:
@@ -26,7 +26,7 @@ class ProductList(ListView):
     
 class ProductDetail(DetailView):
     template_name = 'product/single-product.html'
-    model = ProductModel
+    model = ProductModel, Comment
     context_object_name = 'product'
     
     def get_queryset(self):
