@@ -1,5 +1,6 @@
 from django.utils.text import slugify
 from django.db import models
+from django.contrib.auth.models import User
 
 class ProductBrand(models.Model):
     name = models.CharField(max_length=100, unique=True)
@@ -44,3 +45,12 @@ class AdditionalFeature(models.Model):
 
     def __str__(self):
         return f"Features of {self.product.title}"
+    
+class Comment(models.Model):
+    description = models.TimeField(max_length=500)
+    product = models.ForeignKey(ProductModel, on_delete=models.CASCADE, related_name='comments')
+    created_at = models.DateTimeField(auto_now=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='comment_user')
+    
+    def __str__(self):
+        return self.description[:30]
