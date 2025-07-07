@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import ProductModel
+from .models import ProductModel, Comment
 from django.shortcuts import get_object_or_404
 from django.views.generic import DetailView, ListView
 # Create your views here.
@@ -19,10 +19,12 @@ class ProductList(DetailView):
     
 class ProductDetail(DetailView):
     template_name = 'product/single-product.html'
-    model = ProductModel
+    model = ProductModel, Comment
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["product"] = get_object_or_404(ProductModel)
+        context["comments"] = Comment.objects.all()
+
         return context
     

@@ -229,20 +229,17 @@
                                                     <header class="card-header">
                                                         <h3 class="card-title"><span>بررسی تخصصی گوشی iPhone 13 Pro Max </span></h3>
                                                     </header>
-                                                    <div class="parent-expert default">
+                                                    <di class="parent-expert default">
                                                         <div class="content-expert">
                                                             <p>
                                                                 مدل iPhone 13 Pro Max، آخرین نسخه از سری گوشی‌های iPhone ساخت شرکت اپل است که در تاریخ 14 سپتامبر 2021 معرفی شده است. این گوشی با صفحه‌نمایش سوپر رتینا XDR از نوع OLED و ابعاد 6.7 اینچ، عملکردی بی‌نظیر را در ارائه تصاویر با کیفیت بالا به کاربران خود ارائه می‌دهد. صفحه آن با درجه حفاظت IP68 در برابر آب و گرد و غبار مقاوم است.
                                                                 <br />
-                                                                گوشی iPhone 13 Pro Max دارای پردازنده A15 Bionic، پردازنده اختصاصی شرکت اپل است که همراه با 6 هسته و GPU 5 هسته‌ای طراحی شده است. این پردازنده با فناوری 5 نانومتر قدرتمندی و قابلیت انجام عملیات پردازشی سریع در برنامه‌های گوناگون را فراهم می‌کند.
-                                                                <br />
-                                                                دوربین‌های iPhone 13 Pro Max شامل سه لنز 12 مگاپیکسلی هستند که شامل لنز اصلی، لنز تله‌فوتو و لنز زاویه یک‌صدم گنجایش هستند که مجموعه ای از قابلیت‌های عکاسی شامل فوکوس خودکار بصری، حالت زوم، اپتیکال زوم، پورتره، ثبت عکس با رنگ‌های بیشتر و تصاویر با کیفیت بالا را فراهم می‌کند.
+                                                                گوشی iPhone 13 Pro Max دارای پردازنده A15 Bionic، پردازنده اختصاصی شرکت اپل است که همراه با 6 هسته و GPU 5 هسته‌ای طراحی شده است. این پردازنده با فناوری 5 نانومتر قدرتمندی و قابلیت انجام عملیات{{comment.description}}ه مجموعه ای از قابلیت‌های عکاسی شامل فوکوس خودکار بصری، حالت زوم، اپتیکال زوم، پورتره، ثبت عکس با رنگ‌های بیشتر و تصاویر با کیفیت بالا را فراهم می‌کند.
                                                                 <br />
                                                                 این گوشی دارای سیستم عامل iOS 15 است که با مجموعه دستورالعمل‌ها و روش‌های جدید برای ارتقاء تجربیات کاربری و تضمین امنیت اطلاعات کاربر فراهم می‌شود. همچنین، دارای جعبه باتری پورت هسته هیدروژن است که زمان شارژ موثر گوشی را افزایش می‌دهد.                                                            
                                                             </p>
                                                         </div>
-                                                    </div>
-                                                     
+{{comment.created_at}}                                                     
                                                 
                                             </div>
                                             <div class="tab-pane params" id="params" role="tabpanel" aria-expanded="false">
@@ -280,46 +277,24 @@
                                                     <div class="comments_form default">
                                                         <ol class="comment-list">
                                                             <!-- #comment-## -->
-                                                            <li>
+                                                            {% for comment in comments %}
+                                                                <li>
                                                                 <div class="comment-body">
                                                                     <div class="comment-author">
-                                                                        <img alt="" src="/static/img/profile/1.png" class="avatar"><span class="star4">4.3</span><div class="text-h5">عالی وشیک</div> 
+                                                                        <img alt="" src="{{comment.image.url}}" class="avatar"><span class="star4">4.3</span><div class="text-h5">عالی وشیک</div> 
                                                                     </div>
                                                                     
-                                                                    <p>محصول بسیار خوبی است. صفحه‌نمایش با کیفیت فوق‌العاده، دوربین‌های با کیفیت و روانی کارکرد دستگاه همگی از ویژگی‌های مثبت این محصول هستند.</p>
+                                                                    <p>{{comment.description}}</p>
                                                                   <ul class="commentul">
                                                                       <li>
-                                                                          25 اردیبهشت 1402
-
-
-                                                                      </li>
+                                                                          {{comment.created_at}}                                                                      </li>
                                                                       <li>
                                                                           رضا صبوری
                                                                       </li>
                                                                   </ul>
                                                                 </div>
                                                             </li>
-                                                            <li>
-                                                                <div class="comment-body">
-                                                                    <div class="comment-author">
-                                                                        <img alt="" src="/static/img/profile/2.png" class="avatar"><span class="star3">3.2</span><div class="text-h5">جنس ضعیف</div>
-                                                                    </div>
-
-                                                                    <p>
-                                                                        اینقد قیمتش زیاد هست که نمیشه سمتش رفت، خریدم ولی پشیمونم، بنظر من نخرید، نوکیا 1100 از این بهتره، خیلی کار باهاش هم دشوار هست.
-                                                                    </p>
-                                                                    <ul class="commentul">
-                                                                        <li>
-                                                                            30 اردیبهشت 1402
-
-
-                                                                        </li>
-                                                                        <li>
-                                                                            محمود صفایی
-                                                                        </li>
-                                                                    </ul>
-                                                                </div>
-                                                            </li>
+                                                            {% endfor %}
                                                         </ol>
                                                     </div>
                                                  
