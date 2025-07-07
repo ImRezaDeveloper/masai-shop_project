@@ -277,7 +277,7 @@
                                                     <div class="comments_form default">
                                                         <ol class="comment-list">
                                                             <!-- #comment-## -->
-                                                            {% for comment in comments %}
+                                                            {% for comment in product.comments.all %}
                                                                 <li>
                                                                 <div class="comment-body">
                                                                     <div class="comment-author">
@@ -287,14 +287,7 @@
                                                                     <p>{{comment.description}}</p>
                                                                   <ul class="commentul">
                                                                       <li>
-<<<<<<< HEAD
-                                                                          25 اردیبهشت 1402
-
-
-                                                                   </li>
-=======
                                                                           {{comment.created_at}}                                                                      </li>
->>>>>>> product
                                                                       <li>
                                                                           رضا صبوری
                                                                       </li>

@@ -37,7 +37,7 @@ class ProductDetail(DetailView):
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["product"] = get_object_or_404(ProductModel)
+        # context["product"] = get_object_or_404(ProductModel)
         context["comments"] = Comment.objects.all()
 
         return context
