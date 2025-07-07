@@ -60,7 +60,7 @@ class AdditionalFeature(models.Model):
         return f"Features of {self.product.title}"
     
 class Comment(models.Model):
-    description = models.TimeField(max_length=500)
+    description = models.TextField(max_length=500)
     product = models.ForeignKey(ProductModel, on_delete=models.CASCADE, related_name='comments')
     created_at = models.DateTimeField(auto_now=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='comment_user')
