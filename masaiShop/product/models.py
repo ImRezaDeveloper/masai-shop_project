@@ -55,6 +55,7 @@ class AdditionalFeature(models.Model):
     waterproof = models.BooleanField(default=False)  # حذف null=True چون BooleanField نیازی به آن ندارد
     os = models.CharField(max_length=50, null=True, blank=True)
     technology = models.CharField(max_length=100, null=True, blank=True)
+    description = models.TextField(null=True, blank=True)
 
     def __str__(self):
         return f"Features of {self.product.title}"
@@ -68,3 +69,11 @@ class Comment(models.Model):
     
     def __str__(self):
         return self.description[:30]
+    
+class Like(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='user_like', null=True)
+    product = models.ForeignKey(ProductModel, on_delete=models.CASCADE, related_name='product_like', null=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    
+    def __str__(self):
+        return self.user.username

@@ -13,6 +13,9 @@ class CategoryAdmin(admin.ModelAdmin):
 @admin.register(models.ProductBrand)
 class ProdcutBrandAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug': ('name',)}
+    
+
 
 admin.site.register(models.AdditionalFeature)
+admin.site.register(models.Like)
 admin.site.register(models.Comment)

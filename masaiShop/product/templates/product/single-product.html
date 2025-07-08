@@ -60,7 +60,14 @@
                                     </div>
                                     <ul class="gallery-options">
                                         <li>
-                                            <button class="add-favorites favorites2"><i class="fa fa-heart"></i></button>
+                                            <button class="add-favorites favorites2" data-url="{% url 'product-like' slug=product.slug %}">
+                                                {% if liked %}
+                                                    <i class="fa fa-heart"></i>
+                                                {% else %}
+                                                    <i class="fa fa-heart-o"></i>
+                                                {% endif %}
+                                                <span class="like-count">{{ product.product_like.count }}</span>
+                                            </button>
                                         </li>
                                         <li>
                                             <button class="favorites2" data-toggle="modal" data-target="#myModal"><i class="fa fa-share-alt"></i></button>
@@ -217,7 +224,7 @@
                                         </li>
                                         <li class="box-tabs-tab">
                                             <a data-toggle="tab" href="#comments_questions" role="tab" aria-expanded="false">
-                                                پرسش و نظر
+                                                گذاشتن دیدگاه
                                             </a>
                                         </li>
                                     </ul>
@@ -232,11 +239,9 @@
                                                     <di class="parent-expert default">
                                                         <div class="content-expert">
                                                             <p>
-                                                                مدل iPhone 13 Pro Max، آخرین نسخه از سری گوشی‌های iPhone ساخت شرکت اپل است که در تاریخ 14 سپتامبر 2021 معرفی شده است. این گوشی با صفحه‌نمایش سوپر رتینا XDR از نوع OLED و ابعاد 6.7 اینچ، عملکردی بی‌نظیر را در ارائه تصاویر با کیفیت بالا به کاربران خود ارائه می‌دهد. صفحه آن با درجه حفاظت IP68 در برابر آب و گرد و غبار مقاوم است.
-                                                                <br />
-                                                                گوشی iPhone 13 Pro Max دارای پردازنده A15 Bionic، پردازنده اختصاصی شرکت اپل است که همراه با 6 هسته و GPU 5 هسته‌ای طراحی شده است. این پردازنده با فناوری 5 نانومتر قدرتمندی و قابلیت انجام عملیات{{comment.description}}ه مجموعه ای از قابلیت‌های عکاسی شامل فوکوس خودکار بصری، حالت زوم، اپتیکال زوم، پورتره، ثبت عکس با رنگ‌های بیشتر و تصاویر با کیفیت بالا را فراهم می‌کند.
-                                                                <br />
-                                                                این گوشی دارای سیستم عامل iOS 15 است که با مجموعه دستورالعمل‌ها و روش‌های جدید برای ارتقاء تجربیات کاربری و تضمین امنیت اطلاعات کاربر فراهم می‌شود. همچنین، دارای جعبه باتری پورت هسته هیدروژن است که زمان شارژ موثر گوشی را افزایش می‌دهد.                                                            
+                                                                {% for info in product.features.all %}
+                                                                    {{info.description}}
+                                                                {% endfor %}
                                                             </p>
                                                         </div>
 {{comment.created_at}}                                                     
@@ -289,7 +294,7 @@
                                                                       <li>
                                                                           {{comment.created_at}}                                                                      </li>
                                                                       <li>
-                                                                          {{comment.comment_user.username}}
+                                                                          {{comment.user.username}}
                                                                       </li>
                                                                   </ul>
                                                                 </div>
@@ -301,12 +306,13 @@
                                             </div>
                                             <div class="tab-pane form-comment" id="comments_questions" role="tabpanel" aria-expanded="false">
                                                 <header class="card-header">
-                                                    <h3 class="card-title"><span>ارسال نظر و پرسش  </span></h3>
+                                                    <h3 class="card-title"><span>ارسال دیدگاه</span></h3>
                                                 </header>
                                                    
                                                     <form action="#" class="comment">
-                                                        <textarea class="form-control" placeholder="متن نظر و پرسش" rows="4"></textarea>
-                                                        <button class="btn btn-main-masai">ارسال برای تایید</button>
+                                                        <textarea class="form-control" name='comment' placeholder="نظری چیزی داری بگو..." rows="4"></textarea>
+                                                        <button class="btn btn-main-masai">ارسال </button>
+                                                        {{form.as_p}}
                                                     </form>
                                               
                                             </div>
