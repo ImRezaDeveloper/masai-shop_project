@@ -288,24 +288,35 @@
                                                     <div class="comments_form default">
                                                         <ol class="comment-list">
                                                             <!-- #comment-## -->
-                                                            {% for comment in product.comments.all %}
-                                                                <li>
-                                                                <div class="comment-body">
-                                                                    <div class="comment-author">
-                                                                        <img alt="" src="{{comment.image.url}}" class="avatar"><span class="star4">4.3</span><div class="text-h5">عالی وشیک</div> 
+                                                            
+                                                            {% if product.comments.all %}
+                                                                {% for comment in product.comments.all %}
+                                                                    <li>
+                                                                    <div class="comment-body">
+                                                                        <div class="comment-author">
+                                                                            {% if user.image %}
+                                                                                <img src="{{ user.image.url }}" alt="user image" class="avatar">
+                                                                            {% else %}
+                                                                                <img src="{% static 'img/profile/default-user.png' %}" alt="default user" class="avatar">
+                                                                            {% endif %}
+
+                                                                            <div class="text-h5">{{comment.title}}</div> 
+                                                                        </div>    
+                                                                        <p>{{comment.description}}</p>
+                                                                    <ul class="commentul">
+                                                                        <li>
+                                                                            {{comment.created_at}}                                                                      </li>
+                                                                        <li>
+                                                                            {{comment.user.username}}
+                                                                        </li>
+                                                                    </ul>
                                                                     </div>
-                                                                    
-                                                                    <p>{{comment.description}}</p>
-                                                                  <ul class="commentul">
-                                                                      <li>
-                                                                          {{comment.created_at}}                                                                      </li>
-                                                                      <li>
-                                                                          {{comment.user.username}}
-                                                                      </li>
-                                                                  </ul>
-                                                                </div>
-                                                            </li>
-                                                            {% endfor %}
+                                                                </li>
+                                                                {% endfor %}
+                                                            {% else %}
+                                                                <h4>هنوز نظری ثبت نشده است! اولین نفری باشید که برای این محصول نظر ثبت می‌کنید.</h4>
+                                                            {% endif %}
+                                                                
                                                         </ol>
                                                     </div>
                                                  
@@ -315,10 +326,11 @@
                                                     <h3 class="card-title"><span>ارسال دیدگاه</span></h3>
                                                 </header>
                                                    
-                                                    <form action="#" class="comment">
-                                                        <textarea class="form-control" name='comment' placeholder="نظری چیزی داری بگو..." rows="4"></textarea>
-                                                        <button class="btn btn-main-masai">ارسال </button>
-                                                        {{form.as_p}}
+                                                    <form method='POST' action="{% url 'product-detail' product.slug %}" class="comment">
+                                                        {% csrf_token %}
+                                                        {% comment %} <textarea class="form-control" name='comment' placeholder="نظری چیزی داری بگو..." rows="4"></textarea> {% endcomment %}
+                                                        {{ form.as_p }}
+                                                        <button class="btn btn-main-masai">ارسال</button>
                                                     </form>
                                               
                                             </div>
@@ -353,4 +365,25 @@
 				$(".gallery:gt(0) a[rel^='prettyPhoto']").prettyPhoto({animation_speed:'fast',slideshow:10000, hideflash: true});
 
 			  });
+    </script>
+
+    <script>
+        
+        document.addEventListener("DOMContentLoaded", function () {
+            const btn = document.getElementById("go-to-comments-tab");
+            console.log(btn)
+            if (btn) {
+            btn.addEventListener("click", function (e) {
+                e.preventDefault();
+                const commentsTab = document.querySelector('[data-bs-toggle="tab"][href="#comments_questions"]');
+                console.log('hello');
+                
+                if (commentsTab) {
+                commentsTab.click(); // فعال‌سازی تب با کلیک
+                        console.log('hello');
+
+                }
+            });
+            }
+        });
     </script>

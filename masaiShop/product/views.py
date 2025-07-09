@@ -59,8 +59,14 @@ class ProductDetail(DetailView):
 
         return context
     
+    def get(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        context = super().get_context_data(**kwargs)
+        context["form"] = CommentForm()  # ← نمونه‌ی فرم
+        return self.render_to_response(context)
+
     def post(self, request, *args, **kwargs):
-        self.object = self.get_object()  # همون محصول جاری
+        self.object = self.get_object()
         form = CommentForm(request.POST)
         if form.is_valid():
             comment = form.save(commit=False)
@@ -69,9 +75,11 @@ class ProductDetail(DetailView):
             comment.save()
             return redirect(self.request.path)
         else:
-            context = self.get_context_data(form=form)
-            return self.render_to_response(context)
-
+            context = self.get_context_data()
+            context['form'] = form
+            return render(request, 'product/single-product.html', context)
+        
+        
 def prodcut_like(request, slug):
     product = get_object_or_404(ProductModel, slug=slug)
     
