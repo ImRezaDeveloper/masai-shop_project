@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import ProductModel, Category, Comment, AdditionalFeature
+from .models import ProductModel, ProductBrand, Category, Comment, AdditionalFeature
 from django.shortcuts import get_object_or_404
 from django.views.generic import DetailView, ListView, View
 from .forms import CommentForm
@@ -29,8 +29,17 @@ class ProductList(ListView):
         brandSlug = self.request.GET.get('brand')
         if brandSlug:
             queryset = queryset.filter(brand__slug=brandSlug)
-            
+                    
         return queryset
+
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        brands = ProductBrand.objects.filter(product_brand__category__slug=self.kwargs['category_slug'])
+        features = AdditionalFeature.objects.all()
+        context['brands'] = brands
+        context['features'] = features
+        return context
     
 class ProductDetail(DetailView):
     template_name = 'product/single-product.html'

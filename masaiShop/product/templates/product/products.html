@@ -38,41 +38,16 @@
                             </header>
                             <div class="box-content">
                                 <div class="collapse show">
-                                    <div class="form-account-agree">
+                                    {% for product in products %}
+                                        <div class="form-account-agree">
                                         <label class="checkbox-form checkbox-primary">
                                             <input type="checkbox" id="agree">
                                             <span class="checkbox-check"></span>
                                         </label>
-                                        <label for="agree"> مشکی</label>
+                                        <label for="agree">{{product.color}}</label>
                                         <span class="color_pro_sel" style=" background-color: #000;"></span>
                                     </div>
-                                    <div class="form-account-agree">
-                                        <label class="checkbox-form checkbox-primary">
-                                            <input type="checkbox" id="agree">
-                                            <span class="checkbox-check"></span>
-                                        </label>
-                                        <label for="agree"> قرمز</label>
-                                        <span class="color_pro_sel" style=" background-color: #ff0000;"></span>
-
-                                    </div>
-                                    <div class="form-account-agree">
-                                        <label class="checkbox-form checkbox-primary">
-                                            <input type="checkbox" id="agree">
-                                            <span class="checkbox-check"></span>
-                                        </label>
-                                        <label for="agree"> زرد</label>
-                                        <span class="color_pro_sel" style=" background-color: #ffd800;"></span>
-
-                                    </div>
-                                    <div class="form-account-agree">
-                                        <label class="checkbox-form checkbox-primary">
-                                            <input type="checkbox" id="agree">
-                                            <span class="checkbox-check"></span>
-                                        </label>
-                                        <label for="agree"> آبی</label>
-                                        <span class="color_pro_sel" style=" background-color: #0000ff;"></span>
-
-                                    </div>
+                                    {% endfor %}
                                 </div>
                             </div>
                         </div>
@@ -93,60 +68,16 @@
                                 <h3 class="card-title"><span class="space-right-10">لیست برند ها</span></h3>
                             </header>
                             <div class="box-content">
-                                <div class="collapse show" >
-                                   
+                                <div class="collapse show" >                                   
+                                    {% for brand in brands %}
                                         <div class="form-account-agree">
                                             <label class="checkbox-form checkbox-primary">
                                                 <input type="checkbox" id="agree">
                                                 <span class="checkbox-check"></span>
                                             </label>
-                                            <label for="agree">سامسونگ</label>
+                                            <label for="agree">{{brand.name}}</label>
                                         </div>
-                                 
-                                    
-                                        <div class="form-account-agree">
-                                            <label class="checkbox-form checkbox-primary">
-                                                <input type="checkbox" id="agree">
-                                                <span class="checkbox-check"></span>
-                                            </label>
-                                            <label for="agree"> اپل</label>
-                                        </div>
-                                    
-                                        <div class="form-account-agree">
-                                            <label class="checkbox-form checkbox-primary">
-                                                <input type="checkbox" id="agree">
-                                                <span class="checkbox-check"></span>
-                                            </label>
-                                            <label for="agree"> هواوی</label>
-                                        </div>
-                                        <div class="form-account-agree">
-                                            <label class="checkbox-form checkbox-primary">
-                                                <input type="checkbox" id="agree">
-                                                <span class="checkbox-check"></span>
-                                            </label>
-                                            <label for="agree"> شیائومی</label>
-                                        </div>
-                                        <div class="form-account-agree">
-                                            <label class="checkbox-form checkbox-primary">
-                                                <input type="checkbox" id="agree">
-                                                <span class="checkbox-check"></span>
-                                            </label>
-                                            <label for="agree"> سونی</label>
-                                        </div>
-                                        <div class="form-account-agree">
-                                            <label class="checkbox-form checkbox-primary">
-                                                <input type="checkbox" id="agree">
-                                                <span class="checkbox-check"></span>
-                                            </label>
-                                            <label for="agree"> ایسوس</label>
-                                        </div>
-                                        <div class="form-account-agree">
-                                            <label class="checkbox-form checkbox-primary">
-                                                <input type="checkbox" id="agree">
-                                                <span class="checkbox-check"></span>
-                                            </label>
-                                            <label for="agree"> نوکیا</label>
-                                        </div>
+                                    {% endfor %}                     
                                 </div>
                             </div>
                         </div>
@@ -157,34 +88,15 @@
                             </header>
                             <div class="box-content">
                                 <div class="collapse show">
-                                    <div class="form-account-agree">
+                                    {% for feature in features %}
+                                        <div class="form-account-agree">
                                         <label class="checkbox-form checkbox-primary">
                                             <input type="checkbox" id="agree">
                                             <span class="checkbox-check"></span>
                                         </label>
-                                        <label for="agree"> اندروید</label>
+                                        <label for="agree">{{feature.os}}</label>
                                     </div>
-                                    <div class="form-account-agree">
-                                        <label class="checkbox-form checkbox-primary">
-                                            <input type="checkbox" id="agree">
-                                            <span class="checkbox-check"></span>
-                                        </label>
-                                        <label for="agree"> iOS</label>
-                                    </div>
-                                    <div class="form-account-agree">
-                                        <label class="checkbox-form checkbox-primary">
-                                            <input type="checkbox" id="agree">
-                                            <span class="checkbox-check"></span>
-                                        </label>
-                                        <label for="agree"> ویندوز فون</label>
-                                    </div>
-                                    <div class="form-account-agree">
-                                        <label class="checkbox-form checkbox-primary">
-                                            <input type="checkbox" id="agree">
-                                            <span class="checkbox-check"></span>
-                                        </label>
-                                        <label for="agree"> سایر</label>
-                                    </div>
+                                    {% endfor %}
                                 </div>
                             </div>
                         </div>
