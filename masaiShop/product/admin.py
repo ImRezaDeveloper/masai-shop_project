@@ -17,5 +17,4 @@ class ProdcutBrandAdmin(admin.ModelAdmin):
 
 
 admin.site.register(models.AdditionalFeature)
-admin.site.register(models.Like)
 admin.site.register(models.Comment)

@@ -38,6 +38,7 @@ class ProductModel(models.Model):
     category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='product_category', null=True, blank=True)
     is_offer = models.BooleanField(default=True)
     brand = models.ForeignKey(ProductBrand, on_delete=models.CASCADE, related_name='product_brand', null=True, blank=True)
+    likes = models.ManyToManyField(User, related_name='product_like')
 
     def __str__(self):
         return self.title
@@ -47,6 +48,8 @@ class ProductModel(models.Model):
             self.slug = slugify(self.title)
         super().save(*args, **kwargs)
 
+    def number_of_likes(self):
+        return self.likes.count()
             
 class AdditionalFeature(models.Model):
     product = models.ForeignKey(ProductModel, on_delete=models.CASCADE, related_name="features")  # اضافه کردن related_name برای دسترسی آسانتر
@@ -69,11 +72,3 @@ class Comment(models.Model):
     
     def __str__(self):
         return self.description[:30]
-    
-class Like(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='user_like', null=True)
-    product = models.ForeignKey(ProductModel, on_delete=models.CASCADE, related_name='product_like', null=True)
-    created_at = models.DateTimeField(auto_now_add=True)
-    
-    def __str__(self):
-        return self.user.username
