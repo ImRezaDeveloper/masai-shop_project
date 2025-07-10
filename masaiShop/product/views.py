@@ -36,7 +36,7 @@ class ProductList(ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         brands = ProductBrand.objects.filter(product_brand__category__slug=self.kwargs['category_slug'])
-        features = AdditionalFeature.objects.all()
+        features = AdditionalFeature.objects.filter(product__category__slug=self.kwargs['category_slug'])
         context['brands'] = brands
         context['features'] = features
         return context
