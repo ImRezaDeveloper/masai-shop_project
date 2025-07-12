@@ -117,9 +117,12 @@
                                             <div class="col-6">
                                             {% for info in product.features.all %}
                                                 <ul class="list-group space-15">
-                                                    {% for color in colors %}
-                                                        <li class="list-group-item">رنگ: {{color.name}}</li>
-                                                    {% endfor %}
+                                                    <li class="list-group-item">رنگ‌ها:
+                                                        {% for color in product.color.all %}
+                                                            {{ color.name }}{% if not forloop.last %}, {% endif %}
+                                                        {% endfor %}
+                                                    </li>
+
                                                     <li class="list-group-item">بلوتوث:{{product.bluetooth}}</li>
                                                     <li class="list-group-item"> رزولوشن عکس : {{info.resolution_pic}} مگاپیکسل</li>
                                                     <li class="list-group-item"> اندازه  : {{info.size}}</li>
@@ -262,25 +265,23 @@
                                                
                                                     <div class="col-12">
                                                         <ul class="list-group ">
-                                                            <li class="list-group-item">رنگ: مشکی</li>
-                                                            <li class="list-group-item">بلوتوث:دارد</li>
-                                                            <li class="list-group-item"> رزولوشن عکس : 12 مگاپیکسل</li>
-                                                            <li class="list-group-item" > اندازه  : 6.1</li>
+                                                            {% for info in product.features.all %}
+                                                                <li class="list-group-item">رنگ‌ها:
+                                                                    {% for color in product.color.all %}
+                                                                        {{ color.name }}{% if not forloop.last %}, {% endif %}
+                                                                    {% endfor %}
+                                                                </li>
+                                                            <li class="list-group-item">بلوتوث:{{product.bluetooth}}</li>
+                                                            <li class="list-group-item"> رزولوشن عکس : {{info.resolution_pic}} مگاپیکسل</li>
+                                                            <li class="list-group-item" > اندازه  : {{info.size}}</li>
                                                       
-                                                                <li class="list-group-item">قابلیت : ضد آب</li>
+                                                                <li class="list-group-item">قابلیت : {{info.waterproof}}</li>
                                                                 <li class="list-group-item"> نوع گوشی : دو گوشی</li>
-                                                                <li class="list-group-item"> سیستم عامل : iOS 15</li>
-                                                                <li class="list-group-item"> فناوری  : Super Retina XDR OLED</li>
-
-                                                           
+                                                                <li class="list-group-item"> سیستم عامل : {{info.os}} 15</li>
+                                                                <li class="list-group-item"> فناوری  : {{info.technology}}</li>
+                                                            {% endfor %}
                                                         </ul>
-                                                    
-                                                        
                                                     </div>
-                                                     
-                                                   
-
-                                                
                                             </div>
                                             <div class="tab-pane" id="comments" role="tabpanel" aria-expanded="false">
                                                

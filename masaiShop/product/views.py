@@ -20,49 +20,53 @@ class ProductList(ListView):
     template_name = 'product/products.html'
     model = ProductModel
     context_object_name = 'products'
-    queryset = ProductModel.objects.all()
-        
+
     def get_queryset(self):
-        queryset = super().get_queryset()
-        if 'category_slug' in self.kwargs:
-            queryset = queryset.filter(category__slug=self.kwargs['category_slug'])
+        queryset = ProductModel.objects.all()
+        request = self.request
 
-        brand_slug = self.request.GET.get('brand')
+        category_slug = self.kwargs.get('category_slug')
+        if category_slug:
+            queryset = queryset.filter(category__slug=category_slug)
 
-        if brand_slug:
-            queryset = queryset.filter(brand__slug=brand_slug)
-            
-            
-        # brand_name = self.request.GET.get('brand')
-        # if brand_name:
-        #     queryset = queryset.filter(
-        #         color__brand__name=brand_name
-        #     ).distinct()
-        
-        # request = self.request
-        # colors = request.GET.getlist('color')
-        # brands = request.GET.getlist('brands')
-        # os = request.GET.getlist("os")
-        
-        # if colors:
-            # queryset = queryset.filter(product_color)
-        
-        return queryset
-    
+        colors = request.GET.getlist('colors')
+        brands = request.GET.getlist('brand')
+        os_list = request.GET.getlist('os')
+
+        if colors:
+            queryset = queryset.filter(color__name__in=colors)
+
+        if brands:
+            queryset = queryset.filter(brand__slug__in=brands)
+
+        if os_list:
+            queryset = queryset.filter(features__os__in=os_list)
+
+        return queryset.distinct()
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        brand_slug = self.request.GET.get("brand")
-        category_slug = self.kwargs['category_slug']
-        brands = ProductBrand.objects.filter(product_brand__category__slug=self.kwargs['category_slug'])
-        features = AdditionalFeature.objects.filter(product__category__slug=self.kwargs['category_slug'])
-        if brand_slug:
-            colors = Color.objects.filter(product_color__brand__slug=brand_slug)
+
+        category_slug = self.kwargs.get('category_slug')
+        selected_brand = self.request.GET.get('brand')
+
+        if category_slug:
+            context['brands'] = ProductBrand.objects.filter(product_brand__category__slug=category_slug).distinct()
+            context['features'] = AdditionalFeature.objects.filter(product__category__slug=category_slug).distinct()
         else:
-            colors = Color.objects.filter(product_color__category__slug=category_slug)            
-        context['brands'] = brands
-        context['features'] = features
-        context['colors'] = colors
+            context['brands'] = ProductBrand.objects.all()
+            context['features'] = AdditionalFeature.objects.all()
+
+        if selected_brand:
+            context['colors'] = Color.objects.filter(product_color__brand__slug=selected_brand).distinct()
+        elif category_slug:
+            context['colors'] = Color.objects.filter(product_color__category__slug=category_slug).distinct()
+        else:
+            context['colors'] = Color.objects.all()
+
+
         return context
+
     
 class ProductDetail(DetailView):
     template_name = 'product/single-product.html'
@@ -73,12 +77,10 @@ class ProductDetail(DetailView):
         queryset = super().get_queryset()
         if 'slug' in self.kwargs:
             queryset = queryset.filter(slug=self.kwargs['slug'])
-        return queryset
     
+        return queryset
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        colors = Color.objects.filter(product_color__name=self.kwargs['slug'])
-        print(colors)
         connected_likes = get_object_or_404(ProductModel, slug=self.kwargs['slug'])
         liked = False
         
@@ -90,7 +92,7 @@ class ProductDetail(DetailView):
         # context["product"] = get_object_or_404(ProductModel)
         context["comments"] = Comment.objects.all()
         context['features'] = AdditionalFeature.objects.all()
-        context['colors'] = colors
+        context['colors'] = Color.objects.filter(product_color__name=self.kwargs['slug'])
 
         return context
     
