@@ -18,3 +18,4 @@ class ProdcutBrandAdmin(admin.ModelAdmin):
 
 admin.site.register(models.AdditionalFeature)
 admin.site.register(models.Comment)
+admin.site.register(models.Color)

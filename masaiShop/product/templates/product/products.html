@@ -38,15 +38,15 @@
                             </header>
                             <div class="box-content">
                                 <div class="collapse show">
-                                    {% for product in products %}
+                                    {% for color in colors %}
                                         <div class="form-account-agree">
-                                        <label class="checkbox-form checkbox-primary">
-                                            <input type="checkbox" id="agree">
-                                            <span class="checkbox-check"></span>
-                                        </label>
-                                        <label for="agree">{{product.color}}</label>
-                                        <span class="color_pro_sel" style=" background-color: #000;"></span>
-                                    </div>
+                                            <label class="checkbox-form checkbox-primary">
+                                                <input type="checkbox" id="color_{{ color.id }}" name="colors" value="{{ color.id }}">
+                                                <span class="checkbox-check"></span>
+                                            </label>
+                                            <label for="color_{{ color.id }}">{{ color.name }}</label>
+                                            <span class="color_pro_sel" style="background-color: {{ color.hex_code }};"></span>
+                                        </div>
                                     {% endfor %}
                                 </div>
                             </div>
@@ -113,6 +113,15 @@
                                 <label for="">ارسال فوری</label>
                             </div>
                         </div>
+                        <div class="box">
+                        <div class="box-content text-center">
+                            <button type="button" class="btn btn-primary btn-lg shadow rounded-pill px-4 py-2">
+                                <i class="fa fa-check-circle me-2"></i>
+                                اعمال فیلتر
+                            </button>
+                        </div>
+                    </div>
+
                     </aside>
                     <div class="col-12 col-sm-12 col-md-8 col-lg-9">
                        

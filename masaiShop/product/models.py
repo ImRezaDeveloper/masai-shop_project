@@ -25,12 +25,18 @@ class ProductBrand(models.Model):
         if not self.slug:
             self.slug = slugify(self.name)
         super().save(*args, **kwargs)
+    
+class Color(models.Model):
+    name = models.CharField(max_length=100)
+    
+    def __str__(self):
+        return self.name
 
 class ProductModel(models.Model):
     title = models.CharField(max_length=100)
     info = models.CharField(max_length=100)
     image = models.ImageField(upload_to='products', null=True, blank=True)
-    color = models.CharField(max_length=20)
+    color = models.ManyToManyField(Color, related_name='product_color')
     price = models.IntegerField(default=0)
     slug = models.SlugField(null=True, blank=True, unique=True, max_length=100)  # اضافه کردن unique=True
     discount = models.IntegerField(default=0)

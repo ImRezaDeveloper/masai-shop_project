@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import ProductModel, ProductBrand, Category, Comment, AdditionalFeature
+from .models import ProductModel, ProductBrand, Category, Comment, AdditionalFeature, Color
 from django.shortcuts import get_object_or_404
 from django.views.generic import DetailView, ListView, View
 from .forms import CommentForm
@@ -19,26 +19,49 @@ from django.urls import reverse
 class ProductList(ListView):
     template_name = 'product/products.html'
     model = ProductModel
-    context_object_name = 'products'      
+    context_object_name = 'products'
+    queryset = ProductModel.objects.all()
         
     def get_queryset(self):
         queryset = super().get_queryset()
         if 'category_slug' in self.kwargs:
             queryset = queryset.filter(category__slug=self.kwargs['category_slug'])
 
-        brandSlug = self.request.GET.get('brand')
-        if brandSlug:
-            queryset = queryset.filter(brand__slug=brandSlug)
-                    
-        return queryset
+        brand_slug = self.request.GET.get('brand')
 
+        if brand_slug:
+            queryset = queryset.filter(brand__slug=brand_slug)
+            
+            
+        # brand_name = self.request.GET.get('brand')
+        # if brand_name:
+        #     queryset = queryset.filter(
+        #         color__brand__name=brand_name
+        #     ).distinct()
+        
+        # request = self.request
+        # colors = request.GET.getlist('color')
+        # brands = request.GET.getlist('brands')
+        # os = request.GET.getlist("os")
+        
+        # if colors:
+            # queryset = queryset.filter(product_color)
+        
+        return queryset
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        brand_slug = self.request.GET.get("brand")
+        category_slug = self.kwargs['category_slug']
         brands = ProductBrand.objects.filter(product_brand__category__slug=self.kwargs['category_slug'])
         features = AdditionalFeature.objects.filter(product__category__slug=self.kwargs['category_slug'])
+        if brand_slug:
+            colors = Color.objects.filter(product_color__brand__slug=brand_slug)
+        else:
+            colors = Color.objects.filter(product_color__category__slug=category_slug)            
         context['brands'] = brands
         context['features'] = features
+        context['colors'] = colors
         return context
     
 class ProductDetail(DetailView):
@@ -54,6 +77,8 @@ class ProductDetail(DetailView):
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        colors = Color.objects.filter(product_color__name=self.kwargs['slug'])
+        print(colors)
         connected_likes = get_object_or_404(ProductModel, slug=self.kwargs['slug'])
         liked = False
         
@@ -65,6 +90,7 @@ class ProductDetail(DetailView):
         # context["product"] = get_object_or_404(ProductModel)
         context["comments"] = Comment.objects.all()
         context['features'] = AdditionalFeature.objects.all()
+        context['colors'] = colors
 
         return context
     
